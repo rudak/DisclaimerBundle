@@ -1,6 +1,6 @@
 <?php
 
-namespace DP\MainBundle\Entity;
+namespace Rudak\DisclaimerBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 

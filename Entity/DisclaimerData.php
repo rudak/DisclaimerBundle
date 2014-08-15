@@ -1,5 +1,5 @@
 <?php
-namespace Rudak\Bundle\Entity;
+namespace Rudak\DisclaimerBundle\Entity;
 
 /**
  * Created by PhpStorm.
