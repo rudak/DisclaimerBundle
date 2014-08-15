@@ -5,7 +5,7 @@ namespace Rudak\DisclaimerBundle\Entity;
  * Created by PhpStorm.
  * User: Rudak
  * Date: 15/08/14
- * Time: 22:16
+ * Time: 22:18
  */
 
 use Doctrine\ORM\Mapping as ORM;
