@@ -1,5 +1,5 @@
 {
-    "name": "rudak/DisclaimerBundle",
+    "name": "rudak/disclaimer-bundle",
     "type": "symfony-bundle",
     "description": "Symfony DisclaimerBundle",
     "keywords": ["Mentions Legales", "Disclaimer", "Legal Notice"],
