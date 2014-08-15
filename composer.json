@@ -1,7 +1,7 @@
 {
-    "name": "rudak/mentions-legales-bundle",
+    "name": "rudak/DisclaimerBundle",
     "type": "symfony-bundle",
-    "description": "Symfony MentionsLegalesBundle",
+    "description": "Symfony DisclaimerBundle",
     "keywords": ["Mentions Legales", "Disclaimer", "Legal Notice"],
     "license": "GPL-3.0+",
     "authors": [
@@ -19,9 +19,9 @@
     },
     "autoload": {
         "psr-0": {
-            "Rudak\\Bundle\\MentionsLegalesBundle": ""
+            "Rudak\\Bundle\\DisclaimerBundle": ""
         }
     },
-    "target-dir": "Rudak/Bundle/MentionsLegalesBundle",
+    "target-dir": "Rudak/Bundle/DisclaimerBundle",
     "minimum-stability": "dev"
 }
