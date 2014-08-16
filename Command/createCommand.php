@@ -8,6 +8,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 use Rudak\Bundle\DisclaimerBundle\Entity\DisclaimerData;
+use Symfony\Component\Console\Question\ConfirmationQuestion;
 
 class CreateCommand extends ContainerAwareCommand
 {
@@ -18,31 +19,68 @@ class CreateCommand extends ContainerAwareCommand
     {
         $this
             ->setName('disclaimer:init')
-            ->setDescription('Initialisation des donnees');
+            ->setDescription('Disclaimer\'s data initialization')
+            ->setDefinition($this->getDefinitions());
     }
+
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $disclaimer = $this->getDisclaimer();
-        $disclaimer->setLatestUpdate(new \Datetime());
-        $disclaimer->setSiteUrl('http://site.com');
-        $disclaimer->setOwnerName('Gerard');
-        $disclaimer->setOwnerStatus('Boss');
-        $disclaimer->setOwnerAddress('12 rue de la foret');
-        $disclaimer->setOwnerCompanyName('Toyota');
-        $disclaimer->setSiteCreatorAgency('Total-Design');
-        $disclaimer->setSiteCreatorName('Michel Gourdin');
-        $disclaimer->setSiteCreatorUrl('http://total-design.fr');
-        $disclaimer->setWebmasterName('Louis Drigger');
-        $disclaimer->setEditorManager('Pacal Foulard');
-        $disclaimer->setEditorEmail('pascal.foulard@orange.com');
-        $disclaimer->setHoster('TotalPowerHosting');
-        $disclaimer->setHosterAddress('82 twiston road Milwakee');
-        $disclaimer->setCnil(rand(0, 1));
-        $disclaimer->setCnilNumber(rand(0999999, 999999999));
-        $this->getEm()->flush();
+        foreach ($this->getDisclaimerAttributes() as $attributes => $textAnswer) {
+            $values[$attributes] = $input->getArgument($attributes);
+        }
+        $creator = $this->getContainer()->get('disclaimer.creator');
+        $nb      = $creator->create($values);
+        $output->writeln('The data has been correctly initialized');
+    }
 
-        $output->writeln('<info>OK !</info> Donnees initialisees avec succes.');
+    protected function interact(InputInterface $input, OutputInterface $output)
+    {
+        foreach ($this->getDisclaimerAttributes() as $attributes => $textAnswer) {
+            if (!$input->getArgument($attributes)) {
+                $entry = $this->getHelper('dialog')->askAndValidate(
+                    $output,
+                    $textAnswer,
+                    function ($entry) {
+                        if (empty($entry)) {
+                            throw new \Exception('This answer can not be empty !');
+                        }
+                        return $entry;
+                    }
+                );
+
+                $input->setArgument($attributes, $entry);
+            }
+        }
+    }
+
+    private function getDisclaimerAttributes()
+    {
+        return array(
+            'siteUrl'           => 'The website URL ? (ex: www.exemple.com) ',
+            'ownerName'         => 'The website owner\'s name ? (ex: Bill) ',
+            'ownerStatus'       => 'The website owner\'s status ? (ex: director) ',
+            'ownerAddress'      => 'The website owner\'s address ? (ex: 23 baker-street avenue) ',
+            'ownerCompanyName'  => 'The website owner\'s company name ? (ex: Coca-cola) ',
+            'siteCreatorAgency' => 'The web agency name ? (ex: Web-flower) ',
+            'siteCreatorName'   => 'The project manager ? (ex: john Stanford) ',
+            'siteCreatorUrl'    => 'The web agency URL ? (ex: www.web-flower.com) ',
+            'webmasterName'     => 'The webmaster name ? (ex: Peter Folberg) ',
+            'editorManager'     => 'The editor manager ? (ex: Cindy Sanders) ',
+            'editorEmail'       => 'The editor email ? (ex: cindy.sander@email.com) ',
+            'hoster'            => 'The hoster ? (ex: TotalHosting) ',
+            'hosterAddress'     => 'The hoster address ? (ex: 45 blowfish road, San Diego) ',
+            'cnilNumber'        => 'The CNIL number ? (optionnal, for frenchs privacy rights)'
+        );
+    }
+
+    private function getDefinitions()
+    {
+        $definitions = array();
+        foreach ($this->getDisclaimerAttributes() as $attributes => $textAnswer) {
+            $definitions[] = new InputArgument($attributes, InputArgument::REQUIRED, $attributes);
+        }
+        return $definitions;
     }
 
     private function getDisclaimer()
