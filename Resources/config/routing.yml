@@ -1,3 +1,7 @@
+DisclaimerContent:
+    pattern: /disclaimer
+    defaults: { _controller: RudakDisclaimerBundle:Default:show }
+
 AdminDisclaimerData:
     resource: "@RudakDisclaimerBundle/Resources/config/Admin/routing.yml"
     prefix: /admin/disclaimer-data/
