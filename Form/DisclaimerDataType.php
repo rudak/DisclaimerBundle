@@ -29,6 +29,7 @@ class DisclaimerDataType extends AbstractType
             ->add('hoster')
             ->add('hosterAddress')
             ->add('cnil')
+            ->add('cnilNumber')
             ->add('Submit', 'submit');
     }
 

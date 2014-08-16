@@ -166,4 +166,13 @@ interface DisclaimerDataInterface
      */
     public function getWebmasterName();
 
+    /**
+     * @param mixed $cnilNumber
+     */
+    public function setCnilNumber($cnilNumber);
+
+    /**
+     * @return mixed
+     */
+    public function getCnilNumber();
 } 

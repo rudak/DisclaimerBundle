@@ -69,7 +69,7 @@ abstract class DisclaimerDataModel implements DisclaimerDataInterface
     protected $hoster;
 
     /**
-     * @ORM\Column(type="string", length=255,nullable=true)
+     * @ORM\Column(type="string", length=130,nullable=true)
      */
     protected $hosterAddress;
 
@@ -86,6 +86,11 @@ abstract class DisclaimerDataModel implements DisclaimerDataInterface
      * @ORM\Column(name="latestUpdate", type="datetime")
      */
     protected $latestUpdate;
+
+    /**
+     * @ORM\Column(type="string", length=60,nullable=true)
+     */
+    protected $cnilNumber;
 
     /**
      * @param boolean $cnil
@@ -341,6 +346,22 @@ abstract class DisclaimerDataModel implements DisclaimerDataInterface
     public function getWebmasterName()
     {
         return $this->webmasterName;
+    }
+
+    /**
+     * @param mixed $cnilNumber
+     */
+    public function setCnilNumber($cnilNumber)
+    {
+        $this->cnilNumber = $cnilNumber;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCnilNumber()
+    {
+        return $this->cnilNumber;
     }
 
 
