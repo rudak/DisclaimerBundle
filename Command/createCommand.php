@@ -41,7 +41,7 @@ class CreateCommand extends ContainerAwareCommand
         $disclaimer->setCnil(rand(0, 1));
         $disclaimer->setCnilNumber(rand(0999999, 999999999));
         $this->getEm()->flush();
-        
+
         $output->writeln('<info>OK !</info> Donnees initialisees avec succes.');
     }
 
