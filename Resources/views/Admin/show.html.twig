@@ -1,0 +1,75 @@
+{% extends 'RudakDisclaimerBundle::layout.html.twig' %}
+
+
+{% block content %}
+    <h1>Show</h1>
+    <table>
+        <tr>
+            <th>id</th>
+            <td>{{ DisclaimerData.id }}</td>
+        </tr>
+        <tr>
+            <th>siteUrl</th>
+            <td>{{ DisclaimerData.siteUrl }}</td>
+        </tr>
+        <tr>
+            <th>ownerName</th>
+            <td>{{ DisclaimerData.ownerName }}</td>
+        </tr>
+        <tr>
+            <th>ownerStatus</th>
+            <td>{{ DisclaimerData.ownerStatus }}</td>
+        </tr>
+        <tr>
+            <th>ownerAddress</th>
+            <td>{{ DisclaimerData.ownerAddress }}</td>
+        </tr>
+        <tr>
+            <th>ownerCompanyName</th>
+            <td>{{ DisclaimerData.ownerCompanyName }}</td>
+        </tr>
+        <tr>
+            <th>siteCreatorAgency</th>
+            <td>{{ DisclaimerData.siteCreatorAgency }}</td>
+        </tr>
+        <tr>
+            <th>siteCreatorName</th>
+            <td>{{ DisclaimerData.siteCreatorName }}</td>
+        </tr>
+        <tr>
+            <th>siteCreatorUrl</th>
+            <td>{{ DisclaimerData.siteCreatorUrl }}</td>
+        </tr>
+        <tr>
+            <th>webmasterName</th>
+            <td>{{ DisclaimerData.webmasterName }}</td>
+        </tr>
+        <tr>
+            <th>editorManager</th>
+            <td>{{ DisclaimerData.editorManager }}</td>
+        </tr>
+        <tr>
+            <th>editorEmail</th>
+            <td>{{ DisclaimerData.editorEmail }}</td>
+        </tr>
+        <tr>
+            <th>hoster</th>
+            <td>{{ DisclaimerData.hoster }}</td>
+        </tr>
+        <tr>
+            <th>hosterAddress</th>
+            <td>{{ DisclaimerData.hosterAddress }}</td>
+        </tr>
+        <tr>
+            <th>cnil</th>
+            <td>{{ DisclaimerData.cnil }}</td>
+        </tr>
+        <tr>
+            <th>latestUpdate</th>
+            <td>{{ DisclaimerData.latestUpdate|date() }}</td>
+        </tr>
+    </table>
+    <p>
+        <a href="{{ path('Admin_Disclaimer_data_edit') }}">Edit</a>
+    </p>
+{% endblock %}
