@@ -23,7 +23,6 @@ class CreateCommand extends ContainerAwareCommand
             ->setDefinition($this->getDefinitions());
     }
 
-
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         foreach ($this->getDisclaimerAttributes() as $attributes => $textAnswer) {
