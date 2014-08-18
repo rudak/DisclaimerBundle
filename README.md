@@ -12,6 +12,7 @@ Bundle facilitant la mise en place de mentions légales dans votre site sous Sym
 ```
 new Rudak\Bundle\DisclaimerBundle\RudakDisclaimerBundle()
 ```
+3/ (Optionnel) Vous pouvez ajouter `"doctrine/doctrine-fixtures-bundle": "2.2.*"` dans le require de votre `composer.json` si vous avez l'intention d'utiliser les fixtures. (Une commande est disponible pour remplir les attributs de l'objet DisclaimerData avec des valeurs par defaut).
 ## Utilisation
 
 Il y a trois possibilités possibles pour l'instant :
@@ -24,5 +25,4 @@ Il y a trois possibilités possibles pour l'instant :
 Le routing peut etre modifié pour afficher des URL personalisées, notamment celles de la partie administration qui se contente de prefixer l'URL avec `admin/`.
 Les vues pointées par les controlleurs sont envoyées dans la vue `layout.html.twig`qui peut être facilement surchargée et renvoyée dans des blocks twig au milieu de votre contenu.
 ## TODO
- - Une fixture simple permettant de partir avec des informations provisoires permettant de pouvoir afficher les vues des la phase de dev.
  - Une ligne de commande simple permettant de rentrer les informations unes a unes afin de gagner en rapidité d'installation, (à condition de disposer de toutes les informations dès le début)...
