@@ -52,6 +52,6 @@ class LoadDisclaimerData implements FixtureInterface
      */
     public function getOrder()
     {
-        return 1591;
+        return 1349; // GruikK
     }
 }
