@@ -30,5 +30,13 @@ Il y a trois possibilités possibles pour l'instant :
 
 Le routing peut etre modifié pour afficher des URL personalisées, notamment celles de la partie administration qui se contente de prefixer l'URL avec `admin/`.
 Les vues pointées par les controlleurs sont envoyées dans la vue `layout.html.twig`qui peut être facilement surchargée et renvoyée dans des blocks twig au milieu de votre contenu.
+## Ligne de commande
+Il est possible d'initialiser les données directement dans le terminal, aussitot le bundle installé (et la BDD à jour).
+Voici la commande:
+```php app/console disclaimer:init```
+Répondez aux questions et c'est réglé...
+
+
 ## TODO
- - Une ligne de commande simple permettant de rentrer les informations unes a unes afin de gagner en rapidité d'installation, (à condition de disposer de toutes les informations dès le début)...
+ - Ajouter possibilité de traduction (à voir si les mentions légales sont portables sont les mêmes ici et 'la bas'...)
+ - Refactoriser et découpler quelques trucs
