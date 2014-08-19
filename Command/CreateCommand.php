@@ -25,13 +25,12 @@ class CreateCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $output->writeln("-------------\n");
         $answers = array();
         foreach ($this->getInformations() as $item) {
             // Si cet item est soumis a la validation d'une condition
             if (isset($item['condition'])) {
-                if ($this->checkCondition($answers[$item['condition']['item']], $item['condition'])) {
-                    $output->writeln('condition OK !');
-                } else {
+                if (!$this->checkCondition($answers[$item['condition']['item']], $item['condition'])) {
                     continue;
                 }
             }
@@ -41,9 +40,9 @@ class CreateCommand extends ContainerAwareCommand
             $helper                      = $this->getHelper('question');
             $answers[$item['attribute']] = $helper->ask($input, $output, $question);
         }
-        $output->writeln('Merci ! Les informations vont etre enregistrees');
+        $output->writeln("-------------\n" . "Merci ! Les informations vont etre enregistrees...\n" . "-------------\n");
         $this->hydrating($answers);
-        $output->writeln('Voila, c\'est fini, merci !');
+        $output->writeln("-------------\n" . 'Voila, c\'est fini, merci !');
     }
 
     /**
@@ -55,9 +54,11 @@ class CreateCommand extends ContainerAwareCommand
         $Disclaimer = $this->getDisclaimer();
         $Disclaimer->setLatestUpdate(new \Datetime());
         foreach ($answers as $attribute => $value) {
+            echo $attribute . ' : ' . $value . "\n";
             $method = $this->getMethodName($attribute);
             $Disclaimer->{$method}($value);
         }
+
         $this->getEm()->persist($Disclaimer);
         $this->getEm()->flush($Disclaimer);
     }
@@ -67,12 +68,10 @@ class CreateCommand extends ContainerAwareCommand
      * @param $attribute
      * @return string
      */
-
     private function getMethodName($attribute)
     {
         return 'set' . ucfirst($attribute);
     }
-
 
     /**
      * Renvoie l'objet Question en fonction du type passé en parametre
@@ -88,8 +87,8 @@ class CreateCommand extends ContainerAwareCommand
         } elseif (strtolower($type) == 'bool') {
             return new ChoiceQuestion(
                 $question,
-                array('oui', 'non'),
-                1
+                array('Non', 'Oui'),
+                0
             );
         }
     }
@@ -129,7 +128,7 @@ class CreateCommand extends ContainerAwareCommand
                 'condition' => array(
                     'item'        => 'cnil',
                     'comparaison' => 'equal',
-                    'value'       => 'oui'
+                    'value'       => 'Oui'
                 )
             ),
             array(
