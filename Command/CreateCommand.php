@@ -31,6 +31,7 @@ class CreateCommand extends ContainerAwareCommand
             if (isset($item['condition'])) {
                 if ($this->checkCondition($answers[$item['condition']['item']], $item['condition'])) {
                     $output->writeln('condition OK !');
+                } else {
                     continue;
                 }
             }
@@ -40,7 +41,8 @@ class CreateCommand extends ContainerAwareCommand
             $helper                      = $this->getHelper('question');
             $answers[$item['attribute']] = $helper->ask($input, $output, $question);
         }
-        $output->writeln(print_r($answers));
+        $output->writeln('Merci ! Les informations vont etre enregistrees');
+        
     }
 
     private function getQuestion($question, $default, $type)
@@ -59,10 +61,10 @@ class CreateCommand extends ContainerAwareCommand
     private function checkCondition($reponse, $item)
     {
         $mode = strtolower($item['comparaison']);
-
         if ($mode == 'equal') {
-            return ($item['value'] == $reponse);
+            $result = ($item['value'] == $reponse);
         }
+        return $result;
     }
 
 
@@ -70,6 +72,22 @@ class CreateCommand extends ContainerAwareCommand
     function getInformations()
     {
         return array(
+            array(
+                'attribute' => 'cnil',
+                'question'  => 'Y a t il une declaration a la CNIL ?',
+                'default'   => false,
+                'type'      => 'bool'
+            ),
+            array(
+                'attribute' => 'cnilNumber',
+                'question'  => 'Le numero de declaration CNIL ?',
+                'default'   => '1234567890',
+                'condition' => array(
+                    'item'        => 'cnil',
+                    'comparaison' => 'equal',
+                    'value'       => 'oui'
+                )
+            ),
             array(
                 'attribute' => 'siteUrl',
                 'question'  => 'Quelle est l\'URL du site web ?',
@@ -135,22 +153,6 @@ class CreateCommand extends ContainerAwareCommand
                 'question'  => 'Quelle est l\'adresse de cet hebergeur ?',
                 'default'   => '14 rue du tigre 85330 Tourneville CEDEX 14',
             ),
-            array(
-                'attribute' => 'cnil',
-                'question'  => 'Y a t il une declaration a la CNIL ?',
-                'default'   => false,
-                'type'      => 'bool'
-            ),
-            array(
-                'attribute' => 'cnilNumber',
-                'question'  => 'Le numero de declaration CNIL ?',
-                'default'   => '1234567890',
-                'condition' => array(
-                    'item'        => 'cnil',
-                    'comparaison' => 'equal',
-                    'value'       => true
-                )
-            )
         );
     }
 
