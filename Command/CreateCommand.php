@@ -29,9 +29,7 @@ class CreateCommand extends ContainerAwareCommand
         foreach ($this->getInformations() as $item) {
             // Si cet item est soumis a la validation d'une condition
             if (isset($item['condition'])) {
-                if ($this->checkCondition($answers[$item['condition']['item']], $item['condition'])) {
-                    $output->writeln('condition OK !');
-                } else {
+                if (!$this->checkCondition($answers[$item['condition']['item']], $item['condition'])) {
                     continue;
                 }
             }
