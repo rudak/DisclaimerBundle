@@ -42,9 +42,45 @@ class CreateCommand extends ContainerAwareCommand
             $answers[$item['attribute']] = $helper->ask($input, $output, $question);
         }
         $output->writeln('Merci ! Les informations vont etre enregistrees');
-        
+        $this->hydrating($answers);
+        $output->writeln('Voila, c\'est fini, merci !');
     }
 
+    /**
+     * Enregistrement des informations en BDD
+     * @param array $answers
+     */
+    private function hydrating(array $answers)
+    {
+        $Disclaimer = $this->getDisclaimer();
+        $Disclaimer->setLatestUpdate(new \Datetime());
+        foreach ($answers as $attribute => $value) {
+            $method = $this->getMethodName($attribute);
+            $Disclaimer->{$method}($value);
+        }
+        $this->getEm()->persist($Disclaimer);
+        $this->getEm()->flush($Disclaimer);
+    }
+
+    /**
+     * Renvoie le nom du setter
+     * @param $attribute
+     * @return string
+     */
+
+    private function getMethodName($attribute)
+    {
+        return 'set' . ucfirst($attribute);
+    }
+
+
+    /**
+     * Renvoie l'objet Question en fonction du type passé en parametre
+     * @param $question
+     * @param $default
+     * @param $type
+     * @return ChoiceQuestion|Question
+     */
     private function getQuestion($question, $default, $type)
     {
         if (strtolower($type) == 'string') {
@@ -58,6 +94,12 @@ class CreateCommand extends ContainerAwareCommand
         }
     }
 
+    /**
+     * Vérifie la condition
+     * @param $reponse
+     * @param $item
+     * @return bool
+     */
     private function checkCondition($reponse, $item)
     {
         $mode = strtolower($item['comparaison']);
@@ -67,9 +109,11 @@ class CreateCommand extends ContainerAwareCommand
         return $result;
     }
 
-
-    private
-    function getInformations()
+    /**
+     * Renvoie les informations d'initialisation
+     * @return array
+     */
+    private function getInformations()
     {
         return array(
             array(
@@ -156,22 +200,26 @@ class CreateCommand extends ContainerAwareCommand
         );
     }
 
-    protected
-    function interact(InputInterface $input, OutputInterface $output)
+    /**
+     * Renvoie l'objet disclaimer ID#1
+     * @return DisclaimerData
+     */
+    private function getDisclaimer()
     {
+        $em         = $this->getEm();
+        $Disclaimer = $em->getRepository('RudakDisclaimerBundle:DisclaimerData')->find(1);
+        if (!$Disclaimer) {
+            $Disclaimer = new DisclaimerData;
+            $Disclaimer->setId(1);
+        }
+        return $Disclaimer;
     }
 
-
-    private
-    function getDisclaimer()
-    {
-        $em   = $this->getEm();
-        $repo = $em->getRepository('RudakDisclaimerBundle:DisclaimerData');
-        return $repo->find(1);
-    }
-
-    private
-    function getEm()
+    /**
+     * Renvoie l'entity manager
+     * @return mixed
+     */
+    private function getEm()
     {
         if ($this->em == null) {
             $this->em = $this->getContainer()->get('doctrine')->getManager();
