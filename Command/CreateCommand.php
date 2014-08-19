@@ -25,7 +25,8 @@ class CreateCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $output->writeln("-------------\n");
+        $line = "-------------\n";
+        $output->writeln($line);
         $answers = array();
         foreach ($this->getInformations() as $item) {
             // Si cet item est soumis a la validation d'une condition
@@ -40,9 +41,9 @@ class CreateCommand extends ContainerAwareCommand
             $helper                      = $this->getHelper('question');
             $answers[$item['attribute']] = $helper->ask($input, $output, $question);
         }
-        $output->writeln("-------------\n" . "Merci ! Les informations vont etre enregistrees...\n" . "-------------\n");
+        $output->writeln($line . "Merci ! Les informations vont etre enregistrees...\n" . $line);
         $this->hydrating($answers);
-        $output->writeln("-------------\n" . 'Voila, c\'est fini, merci !');
+        $output->writeln($line . 'Voila, c\'est fini, merci !');
     }
 
     /**
