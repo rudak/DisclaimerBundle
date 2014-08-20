@@ -30,6 +30,8 @@ Il y a trois possibilités possibles pour l'instant :
 
 Le routing peut etre modifié pour afficher des URL personalisées, notamment celles de la partie administration qui se contente de prefixer l'URL avec `admin/`.
 Les vues pointées par les controlleurs sont envoyées dans la vue `layout.html.twig`qui peut être facilement surchargée et renvoyée dans des blocks twig au milieu de votre contenu.
+
+Il est possible aussi de surcharger facilement tout ce qui se trouve dans le bundle. Ce lien est assez clair je pense : `http://symfony.com/fr/doc/current/cookbook/bundles/inheritance.html`. Donc la bonne pratique serait de surcharger le `layout.html.twig` et d'étendre votre vue contenant le design du site. Ainsi en 3 minutes ls mentions legales seront inégrées au reste du site. Il est possible aussi grace à cette methode de surcharger la vue disclaimer.html.twig et d'en modifier le contenu. C'est comme ca que je fais pour ajouter un petit grid bootstrap... 
 ## Ligne de commande
 Il est possible d'initialiser les données directement dans le terminal, aussitot le bundle installé (et la BDD à jour).
 Voici la commande:
