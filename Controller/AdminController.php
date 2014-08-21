@@ -36,9 +36,16 @@ class AdminController extends Controller
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->flush();
+            $this->get('session')->getFlashBag()->add(
+                'success',
+                'Modifications effectuées avec succès !'
+            );
             return $this->redirect($this->generateUrl('Admin_Disclaimer_data_show'));
         }
-
+        $this->get('session')->getFlashBag()->add(
+            'danger',
+            'Erreur ! Vos modifications n\'ont pas été effectuées...'
+        );
         return $this->render('RudakDisclaimerBundle:Admin:edit.html.twig', array(
             'form' => $form->createView(),
         ));

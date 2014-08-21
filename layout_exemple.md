@@ -1,5 +1,5 @@
 # Exemple de layout
-Voici un exemple de layout que j'utilise pour balancer directement le contenue de la vue `disclaimer.html.twig` dans le design de mon site.
+Voici un exemple de layout que j'utilise pour balancer directement le contenu de la vue `disclaimer.html.twig` dans le design de mon site.
 (en surchargeant le bundle)
 
 ```
