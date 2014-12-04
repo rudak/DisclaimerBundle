@@ -8,11 +8,12 @@ use Symfony\Component\HttpFoundation\Request;
 
 class AdminController extends Controller
 {
+    const ACTIVE_ITEM = null;
 
     public function showAction()
     {
         $DisclaimerData = $this->getTheDisclaimerObject();
-
+        $this->setMenuItem();
         return $this->render('RudakDisclaimerBundle:Admin:show.html.twig', array(
             'DisclaimerData' => $DisclaimerData
         ));
@@ -20,6 +21,7 @@ class AdminController extends Controller
 
     public function editAction()
     {
+        $this->setMenuItem();
         $DisclaimerData = $this->getTheDisclaimerObject();
         $form           = $this->getEditForm($DisclaimerData);
         return $this->render('RudakDisclaimerBundle:Admin:edit.html.twig', array(
@@ -63,5 +65,15 @@ class AdminController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         return $em->getRepository('RudakDisclaimerBundle:DisclaimerData')->find(1);
+    }
+
+    private function setMenuItem()
+    {
+        try {
+            // systeme de menu perso
+            $this->get('MenuBundle.Handler')->setActiveItem(self::ACTIVE_ITEM);
+        } catch (Exception $e) {
+            // si ca marche pas , rien...
+        }
     }
 } 
