@@ -7,7 +7,7 @@ use Rudak\Bundle\DisclaimerBundle\Model\DisclaimerDataModel;
 /**
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks
- * @ORM\Table(name="disclaimer_datas")
+ * @ORM\Table(name="rudakDisclaimer_data")
  */
 class DisclaimerData extends DisclaimerDataModel
 {
