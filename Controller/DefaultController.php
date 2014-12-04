@@ -6,10 +6,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class DefaultController extends Controller
 {
+    const ACTIVE_ITEM = null;
 
     public function showAction()
     {
         $DisclaimerData = $this->getTheDisclaimerObject();
+        $this->get('MenuBundle.Handler')->setActiveItem(self::ACTIVE_ITEM);
 
         return $this->render('RudakDisclaimerBundle:Default:disclaimer.html.twig', array(
             'DisclaimerData' => $DisclaimerData

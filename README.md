@@ -8,17 +8,23 @@ Bundle facilitant la mise en place de mentions légales dans votre site sous Sym
 ```
 "rudak/disclaimer-bundle": "dev-master"
 ```
+
 2/ Ajoutez le bundle dans le kernel
 ```
 new Rudak\Bundle\DisclaimerBundle\RudakDisclaimerBundle()
 ```
+
 3/ Ajoutez le routing suivant qui pointe vers le `RudakDisclaimerBundle` dans votre `app/config/routing.yml`
 ```
 rudak_disclaimer:
     resource: "@RudakDisclaimerBundle/Resources/config/routing.yml"
     prefix: /
 ```
-4/ (Optionnel) Vous pouvez ajouter `"doctrine/doctrine-fixtures-bundle": "2.2.*"` dans le require de votre `composer.json` si vous avez l'intention d'utiliser les fixtures. (Une commande est disponible pour remplir les attributs de l'objet DisclaimerData avec des valeurs par defaut).
+
+4/ Par defaut la page de mention légales s'affiche dans une page HTML basique qui n'a rien a voir avec votre design (j'espere) vous pouvez surcharger le bundle et modifier le layout.html.twig de sortie pour qu'il intégre votre layout principal
+
+
+5/ (Optionnel) Vous pouvez ajouter `"doctrine/doctrine-fixtures-bundle": "2.2.*"` dans le require de votre `composer.json` si vous avez l'intention d'utiliser les fixtures. (Une commande est disponible pour remplir les attributs de l'objet DisclaimerData avec des valeurs par defaut).
 ## Utilisation
 
 Il y a trois possibilités possibles pour l'instant :
