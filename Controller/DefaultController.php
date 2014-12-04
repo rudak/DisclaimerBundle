@@ -11,7 +11,14 @@ class DefaultController extends Controller
     public function showAction()
     {
         $DisclaimerData = $this->getTheDisclaimerObject();
-        $this->get('MenuBundle.Handler')->setActiveItem(self::ACTIVE_ITEM);
+
+        try{
+            // systeme de menu perso
+            $this->get('MenuBundle.Handler')->setActiveItem(self::ACTIVE_ITEM);
+        } catch(Exception $e){
+            // si ca marche pas , rien...
+        }
+
 
         return $this->render('RudakDisclaimerBundle:Default:disclaimer.html.twig', array(
             'DisclaimerData' => $DisclaimerData
