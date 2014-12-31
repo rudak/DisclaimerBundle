@@ -15,22 +15,58 @@ class DisclaimerDataType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('siteUrl')
-            ->add('ownerName')
-            ->add('ownerStatus')
-            ->add('ownerAddress')
-            ->add('ownerCompanyName')
-            ->add('siteCreatorAgency')
-            ->add('siteCreatorName')
-            ->add('siteCreatorUrl')
-            ->add('webmasterName')
-            ->add('editorManager')
-            ->add('editorEmail')
-            ->add('hoster')
-            ->add('hosterAddress')
-            ->add('cnil')
-            ->add('cnilNumber')
-            ->add('Submit', 'submit');
+            ->add('siteUrl', 'text', array(
+                'label' => 'Adresse du site'
+            ))
+            ->add('ownerName', 'text', array(
+                'label' => 'Propriétaire du site'
+            ))
+            ->add('ownerStatus', 'text', array(
+                'label' => 'Satut du propriétaire'
+            ))
+            ->add('ownerAddress', 'text', array(
+                'label' => 'Adresse du propriétaire'
+            ))
+            ->add('ownerCompanyName', 'text', array(
+                'label' => 'Nom de l\entreprise'
+            ))
+            ->add('siteCreatorAgency', 'text', array(
+                'label' => 'Agence web'
+            ))
+            ->add('siteCreatorName', 'text', array(
+                'label' => 'Responsable de création'
+            ))
+            ->add('siteCreatorUrl', 'text', array(
+                'label' => 'Site du responsable'
+            ))
+            ->add('webmasterName', 'text', array(
+                'label' => 'Chef de projet'
+            ))
+            ->add('editorManager', 'text', array(
+                'label' => 'Responsable d\edition'
+            ))
+            ->add('editorEmail', 'text', array(
+                'label' => 'Son email'
+            ))
+            ->add('hoster', 'text', array(
+                'label' => 'Hébergeur'
+            ))
+            ->add('hosterAddress', 'text', array(
+                'label' => 'Adresse de l\'hébergeur'
+            ))
+            ->add('cnil', 'checkbox', array(
+                'label'    => 'Déclaration CNIL',
+                'required' => false
+            ))
+            ->add('cnilNumber', 'text', array(
+                'label' => 'Numéro de déclaration'
+            ))
+            ->add('Submit', 'submit', array(
+                'label' => 'Enregistrer ces information',
+                'attr'  => array(
+                    'class' => 'btn btn-success'
+                )
+            ));
     }
 
     /**

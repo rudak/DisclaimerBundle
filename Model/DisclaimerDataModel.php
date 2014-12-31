@@ -97,7 +97,7 @@ abstract class DisclaimerDataModel implements DisclaimerDataInterface
      */
     public function setCnil($cnil)
     {
-        $this->cnil = (strtolower($cnil) == 'oui') ? true : false;
+        $this->cnil = $cnil;
     }
 
     /**
