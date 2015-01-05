@@ -19,7 +19,7 @@ class CreateCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('disclaimer:init')
+            ->setName('disclaimer:initManager')
             ->setDescription('Initialisation du disclaimer');
     }
 

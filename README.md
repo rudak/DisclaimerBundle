@@ -41,7 +41,7 @@ Il est possible aussi de surcharger facilement tout ce qui se trouve dans le bun
 ## Ligne de commande
 Il est possible d'initialiser les données directement dans le terminal, aussitot le bundle installé (et la BDD à jour).
 Voici la commande:
-```php app/console disclaimer:init```
+```php app/console disclaimer:initManager```
 Répondez aux questions et c'est réglé...
 
 
