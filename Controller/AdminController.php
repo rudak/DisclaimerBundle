@@ -5,6 +5,7 @@ use Rudak\Bundle\DisclaimerBundle\RudakDisclaimerBundle;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Rudak\Bundle\DisclaimerBundle\Form\DisclaimerDataType;
 use Symfony\Component\HttpFoundation\Request;
+use Rudak\Bundle\DisclaimerBundle\Entity\DisclaimerData;
 
 class AdminController extends Controller
 {
@@ -35,6 +36,7 @@ class AdminController extends Controller
         $form->handleRequest($request);
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $em->persist($DisclaimerData);
             $em->flush();
             $this->get('session')->getFlashBag()->add(
                 'success',
@@ -61,7 +63,12 @@ class AdminController extends Controller
 
     private function getTheDisclaimerObject()
     {
-        $em = $this->getDoctrine()->getManager();
-        return $em->getRepository('RudakDisclaimerBundle:DisclaimerData')->find(1);
+        $em     = $this->getDoctrine()->getManager();
+        $object = $em->getRepository('RudakDisclaimerBundle:DisclaimerData')->find(1);
+        if(!$object){
+            $object = new DisclaimerData();
+            $object->setId(1);
+        }
+        return $object;
     }
 } 

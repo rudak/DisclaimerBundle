@@ -6,71 +6,71 @@
     <table>
         <tr>
             <th>id</th>
-            <td>{{ DisclaimerData.id }}</td>
+            <td>{{ DisclaimerData.id|default('***') }}</td>
         </tr>
         <tr>
             <th>siteUrl</th>
-            <td>{{ DisclaimerData.siteUrl }}</td>
+            <td>{{ DisclaimerData.siteUrl|default('***')  }}</td>
         </tr>
         <tr>
             <th>ownerName</th>
-            <td>{{ DisclaimerData.ownerName }}</td>
+            <td>{{ DisclaimerData.ownerName|default('***')  }}</td>
         </tr>
         <tr>
             <th>ownerStatus</th>
-            <td>{{ DisclaimerData.ownerStatus }}</td>
+            <td>{{ DisclaimerData.ownerStatus|default('***')  }}</td>
         </tr>
         <tr>
             <th>ownerAddress</th>
-            <td>{{ DisclaimerData.ownerAddress }}</td>
+            <td>{{ DisclaimerData.ownerAddress|default('***')  }}</td>
         </tr>
         <tr>
             <th>ownerCompanyName</th>
-            <td>{{ DisclaimerData.ownerCompanyName }}</td>
+            <td>{{ DisclaimerData.ownerCompanyName|default('***')  }}</td>
         </tr>
         <tr>
             <th>siteCreatorAgency</th>
-            <td>{{ DisclaimerData.siteCreatorAgency }}</td>
+            <td>{{ DisclaimerData.siteCreatorAgency|default('***')  }}</td>
         </tr>
         <tr>
             <th>siteCreatorName</th>
-            <td>{{ DisclaimerData.siteCreatorName }}</td>
+            <td>{{ DisclaimerData.siteCreatorName|default('***')  }}</td>
         </tr>
         <tr>
             <th>siteCreatorUrl</th>
-            <td>{{ DisclaimerData.siteCreatorUrl }}</td>
+            <td>{{ DisclaimerData.siteCreatorUrl|default('***')  }}</td>
         </tr>
         <tr>
             <th>webmasterName</th>
-            <td>{{ DisclaimerData.webmasterName }}</td>
+            <td>{{ DisclaimerData.webmasterName|default('***')  }}</td>
         </tr>
         <tr>
             <th>editorManager</th>
-            <td>{{ DisclaimerData.editorManager }}</td>
+            <td>{{ DisclaimerData.editorManager|default('***')  }}</td>
         </tr>
         <tr>
             <th>editorEmail</th>
-            <td>{{ DisclaimerData.editorEmail }}</td>
+            <td>{{ DisclaimerData.editorEmail|default('***')  }}</td>
         </tr>
         <tr>
             <th>hoster</th>
-            <td>{{ DisclaimerData.hoster }}</td>
+            <td>{{ DisclaimerData.hoster|default('***')  }}</td>
         </tr>
         <tr>
             <th>hosterAddress</th>
-            <td>{{ DisclaimerData.hosterAddress }}</td>
+            <td>{{ DisclaimerData.hosterAddress|default('***')  }}</td>
         </tr>
         <tr>
             <th>cnil</th>
-            <td>{{ DisclaimerData.cnil }}</td>
+            <td>{{ DisclaimerData.cnil|default('***')  }}</td>
         </tr>
         <tr>
             <th>cnil number</th>
-            <td>{{ DisclaimerData.cnilNumber }}</td>
+            <td>{{ DisclaimerData.cnilNumber|default('***')  }}</td>
         </tr>
         <tr>
             <th>latestUpdate</th>
-            <td>{{ DisclaimerData.latestUpdate|date() }}</td>
+            <td>{{ DisclaimerData.latestUpdate|default('-45 day') |date() }}</td>
         </tr>
     </table>
     <p>

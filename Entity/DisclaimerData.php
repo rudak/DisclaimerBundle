@@ -40,6 +40,7 @@ class DisclaimerData extends DisclaimerDataModel
 
     /**
      * @ORM\PreUpdate()
+     * @ORM\PrePersist()
      */
     public function preUpdate()
     {

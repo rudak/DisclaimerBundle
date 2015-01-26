@@ -16,50 +16,64 @@ class DisclaimerDataType extends AbstractType
     {
         $builder
             ->add('siteUrl', 'text', array(
-                'label' => 'Adresse du site'
+                'label' => 'Adresse du site',
+                'required'  => false
             ))
             ->add('ownerName', 'text', array(
-                'label' => 'Propriétaire du site'
+                'label' => 'Propriétaire du site',
+                'required'  => false
             ))
             ->add('ownerStatus', 'text', array(
-                'label' => 'Satut du propriétaire'
+                'label' => 'Satut du propriétaire',
+                'required'  => false
             ))
             ->add('ownerAddress', 'text', array(
-                'label' => 'Adresse du propriétaire'
+                'label' => 'Adresse du propriétaire',
+                'required'  => false
             ))
             ->add('ownerCompanyName', 'text', array(
-                'label' => 'Nom de l\entreprise'
+                'label' => 'Nom de l\'entreprise',
+                'required'  => false
             ))
             ->add('siteCreatorAgency', 'text', array(
-                'label' => 'Agence web'
+                'label' => 'Agence web',
+                'required'  => false
             ))
             ->add('siteCreatorName', 'text', array(
-                'label' => 'Responsable de création'
+                'label' => 'Responsable de création',
+                'required'  => false
             ))
             ->add('siteCreatorUrl', 'text', array(
-                'label' => 'Site du responsable'
+                'label' => 'Site du responsable',
+                'required'  => false
             ))
             ->add('webmasterName', 'text', array(
-                'label' => 'Chef de projet'
+                'label' => 'Chef de projet',
+                'required'  => false
             ))
             ->add('editorManager', 'text', array(
-                'label' => 'Responsable d\edition'
+                'label' => 'Responsable d\'edition',
+                'required'  => false
             ))
             ->add('editorEmail', 'text', array(
-                'label' => 'Son email'
+                'label' => 'Son email',
+                'required'  => false
             ))
             ->add('hoster', 'text', array(
-                'label' => 'Hébergeur'
+                'label' => 'Hébergeur',
+                'required'  => false
             ))
             ->add('hosterAddress', 'text', array(
-                'label' => 'Adresse de l\'hébergeur'
+                'label' => 'Adresse de l\'hébergeur',
+                'required'  => false
             ))
             ->add('cnil', 'checkbox', array(
                 'label'    => 'Déclaration CNIL',
                 'required' => false
             ))
             ->add('cnilNumber', 'text', array(
-                'label' => 'Numéro de déclaration'
+                'label' => 'Numéro de déclaration',
+                'required'  => false
             ))
             ->add('Submit', 'submit', array(
                 'label' => 'Enregistrer ces information',
