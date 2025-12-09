@@ -21,7 +21,5 @@ class RudakDisclaimerExtension extends Extension
 
         $loader = new PhpFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.php');
-
-        $container->setParameter('rudak_disclaimer.route_prefix', $config['route_prefix']);
     }
 }

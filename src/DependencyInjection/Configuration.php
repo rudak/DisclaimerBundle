@@ -17,14 +17,7 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder('rudak_disclaimer');
         $rootNode = $treeBuilder->getRootNode();
 
-        $rootNode
-            ->children()
-                ->scalarNode('route_prefix')
-                    ->defaultValue('/disclaimer')
-                    ->info('URL prefix for disclaimer routes')
-                ->end()
-            ->end()
-        ;
+        // No configuration needed for now - simple bundle with defaults
 
         return $treeBuilder;
     }

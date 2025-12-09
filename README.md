@@ -68,15 +68,6 @@ Once installed, the disclaimer page is available at:
 https://your-domain.com/disclaimer
 ```
 
-### Customize the route prefix
-
-You can customize the route prefix in your `config/packages/rudak_disclaimer.yaml`:
-
-```yaml
-rudak_disclaimer:
-    route_prefix: '/legal-notice'  # Default: '/disclaimer'
-```
-
 ### Add a link in your templates
 
 Use the Twig function to add a link to the disclaimer page:
@@ -155,16 +146,6 @@ class CustomDisclaimerController extends BaseController
         ]);
     }
 }
-```
-
-## Configuration Reference
-
-```yaml
-# config/packages/rudak_disclaimer.yaml
-rudak_disclaimer:
-    # URL prefix for disclaimer routes
-    # Default: '/disclaimer'
-    route_prefix: '/disclaimer'
 ```
 
 ## RGPD Compliance
