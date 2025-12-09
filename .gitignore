@@ -1,8 +1,28 @@
-# Symfony directories
-vendor/*
+# Dependencies
+/vendor/
+composer.lock
+
+# IDEs
+/.idea/
+/.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# PHPUnit
+/phpunit.xml
+/.phpunit.result.cache
+
+# PHPStan
+/var/phpstan/
+
+# Build artifacts
+/var/
+/build/
 
 # Composer
 composer.phar
-
-# my IDE config files
-.idea/*
