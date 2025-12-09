@@ -1,4 +1,0 @@
-services:
-    disclaimer.creator:
-        class: Rudak\Bundle\DisclaimerBundle\Util\DisclaimerCreator
-        arguments: [ @doctrine.orm.entity_manager ]
