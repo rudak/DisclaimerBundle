@@ -69,13 +69,15 @@ class SmokeTest extends TestCase
 
     public function testTwigExtensionCanBeInstantiated(): void
     {
-        $extension = new DisclaimerExtension();
+        $urlGenerator = $this->createMock(\Symfony\Component\Routing\Generator\UrlGeneratorInterface::class);
+        $extension = new DisclaimerExtension($urlGenerator);
         $this->assertInstanceOf(DisclaimerExtension::class, $extension);
     }
 
     public function testTwigExtensionHasFunctions(): void
     {
-        $extension = new DisclaimerExtension();
+        $urlGenerator = $this->createMock(\Symfony\Component\Routing\Generator\UrlGeneratorInterface::class);
+        $extension = new DisclaimerExtension($urlGenerator);
         $functions = $extension->getFunctions();
         
         $this->assertIsArray($functions);
@@ -85,7 +87,13 @@ class SmokeTest extends TestCase
 
     public function testTwigExtensionGetDisclaimerLink(): void
     {
-        $extension = new DisclaimerExtension();
+        $urlGenerator = $this->createMock(\Symfony\Component\Routing\Generator\UrlGeneratorInterface::class);
+        $urlGenerator->expects($this->once())
+            ->method('generate')
+            ->with('rudak_disclaimer_show')
+            ->willReturn('/disclaimer');
+        
+        $extension = new DisclaimerExtension($urlGenerator);
         $link = $extension->getDisclaimerLink();
         
         $this->assertIsString($link);
@@ -95,7 +103,13 @@ class SmokeTest extends TestCase
 
     public function testTwigExtensionGetDisclaimerLinkWithCustomText(): void
     {
-        $extension = new DisclaimerExtension();
+        $urlGenerator = $this->createMock(\Symfony\Component\Routing\Generator\UrlGeneratorInterface::class);
+        $urlGenerator->expects($this->once())
+            ->method('generate')
+            ->with('rudak_disclaimer_show')
+            ->willReturn('/disclaimer');
+        
+        $extension = new DisclaimerExtension($urlGenerator);
         $link = $extension->getDisclaimerLink('Custom Text');
         
         $this->assertStringContainsString('Custom Text', $link);
@@ -104,7 +118,13 @@ class SmokeTest extends TestCase
 
     public function testTwigExtensionGetDisclaimerLinkWithAttributes(): void
     {
-        $extension = new DisclaimerExtension();
+        $urlGenerator = $this->createMock(\Symfony\Component\Routing\Generator\UrlGeneratorInterface::class);
+        $urlGenerator->expects($this->once())
+            ->method('generate')
+            ->with('rudak_disclaimer_show')
+            ->willReturn('/disclaimer');
+        
+        $extension = new DisclaimerExtension($urlGenerator);
         $link = $extension->getDisclaimerLink('Link', ['class' => 'test-class', 'target' => '_blank']);
         
         $this->assertStringContainsString('class="test-class"', $link);

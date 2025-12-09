@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Rudak\DisclaimerBundle\Twig;
 
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
@@ -12,6 +13,11 @@ use Twig\TwigFunction;
  */
 class DisclaimerExtension extends AbstractExtension
 {
+    public function __construct(
+        private readonly UrlGeneratorInterface $urlGenerator
+    ) {
+    }
+
     public function getFunctions(): array
     {
         return [
@@ -29,8 +35,11 @@ class DisclaimerExtension extends AbstractExtension
             $attrs .= sprintf(' %s="%s"', htmlspecialchars($key), htmlspecialchars($value));
         }
 
+        $url = $this->urlGenerator->generate('rudak_disclaimer_show');
+
         return sprintf(
-            '<a href="/disclaimer"%s>%s</a>',
+            '<a href="%s"%s>%s</a>',
+            htmlspecialchars($url),
             $attrs,
             htmlspecialchars($text)
         );
