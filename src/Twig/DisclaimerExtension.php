@@ -35,9 +35,4 @@ class DisclaimerExtension extends AbstractExtension
             htmlspecialchars($text)
         );
     }
-
-    public function getName(): string
-    {
-        return 'rudak_disclaimer';
-    }
 }

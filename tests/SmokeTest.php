@@ -110,10 +110,4 @@ class SmokeTest extends TestCase
         $this->assertStringContainsString('class="test-class"', $link);
         $this->assertStringContainsString('target="_blank"', $link);
     }
-
-    public function testTwigExtensionGetName(): void
-    {
-        $extension = new DisclaimerExtension();
-        $this->assertSame('rudak_disclaimer', $extension->getName());
-    }
 }
